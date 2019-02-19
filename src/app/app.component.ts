@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'untitled';
+  title = 'Hot Weather Widget';
+
+  public selectedPlace: IRelaxDestination | boolean = false;
+
+  public onPlaceSelected(place: IRelaxDestination) {
+    this.selectedPlace = place;
+  }
 }

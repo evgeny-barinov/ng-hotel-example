@@ -1,5 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { PlacesServiceService } from '../shared/services/places-service.service';
+import {IStore} from '../store';
+import {Store} from '@ngrx/store';
+import {GetPlacesPending} from '../store/actions/places.action';
 
 @Component({
   selector: 'app-activities',
@@ -17,11 +20,12 @@ export class ActivitiesComponent implements OnInit {
 
   public selectedPlace: IRelaxDestination;
 
-  constructor(private placesService: PlacesServiceService) { }
+  constructor(private store: Store<IStore>) { }
 
   ngOnInit() {
-    this.placesService.getPlaces().subscribe((places: IRelaxDestination[]) => {
-      this.places = places;
+    this.store.dispatch(new GetPlacesPending());
+    this.store.select('places').subscribe((places: IRelaxDestination[]) => {
+        this.places = places;
     });
     this.selectPlace(this.places[0]);
   }

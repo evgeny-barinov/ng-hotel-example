@@ -7,6 +7,12 @@ import { WeatherComponent } from './weather/weather.component';
 import { SocialinfoComponent } from './socialinfo/socialinfo.component';
 import { UniqtypePipe } from './shared/pipes/uniqtype.pipe';
 import { FilterPlacesPipe } from './shared/pipes/filter-places.pipe';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store';
+import { environment } from '../environments/environment';
+import { PlacesEffects } from './store/effects/places.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,12 @@ import { FilterPlacesPipe } from './shared/pipes/filter-places.pipe';
     FilterPlacesPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([PlacesEffects]),
+    environment.production
+        ? []
+        : StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

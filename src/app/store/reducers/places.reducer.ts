@@ -14,5 +14,5 @@ export function placesReducer(state: IRelaxDestination[] = intialState, action: 
 }
 
 export function selectPlaceReducer(state: IRelaxDestination, action: SelectPlace) {
-    return state;
+    return action.payload;
 }

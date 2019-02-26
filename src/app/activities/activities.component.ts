@@ -31,7 +31,6 @@ export class ActivitiesComponent implements OnInit {
   }
 
   public selectPlace(place: IRelaxDestination) {
-    console.log(place);
     this.store.dispatch(new SelectPlace(place));
     this.store.select('selectedPlace').subscribe((selectedPlace: IRelaxDestination) => {
        this.selectedPlace = selectedPlace;

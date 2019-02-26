@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.store.select('selectedPlace').subscribe((selectedPlace: IRelaxDestination) => {
-      console.log(selectedPlace);
       this.selectedPlace = selectedPlace;
     });
   }

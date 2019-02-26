@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { PlacesServiceService } from '../shared/services/places-service.service';
 import {IStore} from '../store';
 import {Store} from '@ngrx/store';
-import {GetPlacesPending} from '../store/actions/places.action';
+import {GetPlacesPending, SelectPlace} from '../store/actions/places.action';
 
 @Component({
   selector: 'app-activities',
@@ -15,9 +15,6 @@ export class ActivitiesComponent implements OnInit {
 
   public currentType = '';
 
-  @Output()
-  public placeSelected = new EventEmitter();
-
   public selectedPlace: IRelaxDestination;
 
   constructor(private store: Store<IStore>) { }
@@ -27,12 +24,18 @@ export class ActivitiesComponent implements OnInit {
     this.store.select('places').subscribe((places: IRelaxDestination[]) => {
         this.places = places;
     });
-    this.selectPlace(this.places[0]);
+    this.store.dispatch(new SelectPlace(this.places[0]));
+    this.store.select('selectedPlace').subscribe((selectedPlace: IRelaxDestination) => {
+      this.selectedPlace = selectedPlace;
+    });
   }
 
   public selectPlace(place: IRelaxDestination) {
-    this.selectedPlace = place;
-    this.placeSelected.emit(place);
+    console.log(place);
+    this.store.dispatch(new SelectPlace(place));
+    this.store.select('selectedPlace').subscribe((selectedPlace: IRelaxDestination) => {
+       this.selectedPlace = selectedPlace;
+    });
   }
 
 }

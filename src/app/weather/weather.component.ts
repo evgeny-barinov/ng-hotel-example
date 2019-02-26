@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IStore } from '../store';
 
 @Component({
   selector: 'app-weather',
@@ -7,12 +9,14 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class WeatherComponent implements OnInit {
 
-  @Input()
   public weather: IWeather;
 
-  constructor() { }
+  constructor(private store: Store<IStore>) { }
 
   ngOnInit() {
+    this.store.select('selectedPlace').subscribe((selectedPlace: IRelaxDestination) => {
+      this.weather = selectedPlace.weather;
+    });
   }
 
 }

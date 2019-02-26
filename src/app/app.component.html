@@ -1,11 +1,11 @@
 <h1>{{title}}</h1>
 <div class="element">
   <div class="element-left">
-    <app-activities (placeSelected)="onPlaceSelected($event)"></app-activities>
+    <app-activities></app-activities>
   </div>
   <div class="element-right" *ngIf="selectedPlace">
-    <app-weather [weather]="selectedPlace.weather"></app-weather>
-    <app-followers [socialInfo]="selectedPlace.social_info"></app-followers>
+    <app-weather></app-weather>
+    <app-followers></app-followers>
   </div>
   <div class="clear"> </div>
 </div>

@@ -1,4 +1,4 @@
-import { PlacesAction, GET_PLACES_ERROR, GET_PLACES_SUCCESS, GetPlacesSuccess } from '../actions/places.action';
+import {PlacesAction, GET_PLACES_ERROR, GET_PLACES_SUCCESS, GetPlacesSuccess, SELECT_PLACE, SelectPlace} from '../actions/places.action';
 
 const intialState: IRelaxDestination[] = [];
 
@@ -11,4 +11,8 @@ export function placesReducer(state: IRelaxDestination[] = intialState, action: 
         default:
             return state;
     }
+}
+
+export function selectPlaceReducer(state: IRelaxDestination, action: SelectPlace) {
+    return state;
 }

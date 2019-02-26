@@ -13,7 +13,7 @@ interface ISocialInfo {
 }
 
 interface IRelaxDestination {
-    title: string,
+    title: string;
     img: string;
     address: string;
     phone: number;

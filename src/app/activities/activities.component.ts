@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { places} from '../shared/mock/data';
+import { PlacesServiceService } from '../shared/services/places-service.service';
 
 @Component({
   selector: 'app-activities',
@@ -17,10 +17,12 @@ export class ActivitiesComponent implements OnInit {
 
   public selectedPlace: IRelaxDestination;
 
-  constructor() { }
+  constructor(private placesService: PlacesServiceService) { }
 
   ngOnInit() {
-    this.places = places;
+    this.placesService.getPlaces().subscribe((places: IRelaxDestination[]) => {
+      this.places = places;
+    });
     this.selectPlace(this.places[0]);
   }
 
